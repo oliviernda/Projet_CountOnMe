@@ -95,22 +95,23 @@ class Calculator {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
+            guard let left = Int(operationsToReduce[0]) else { return }
             let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
+            guard let right = Int(operationsToReduce[2]) else { return }
             
             let result: Int
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
-            default: fatalError("Unknown operator !")
+            default: return
             }
             
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
             operationsToReduce.insert("\(result)", at: 0)
         }
         
-        calculString.append(" = \(operationsToReduce.first!)")
+        guard let result = operationsToReduce.first else { return }
+        calculString.append(" = \(result)")
         
     }
     

@@ -61,9 +61,6 @@
 		1FA43BC6224E569900F565CB = {
 			isa = PBXGroup;
 			children = (
-				2EB7BB602465485600DF1C89 /* View */,
-				2EB7BB5F2465482800DF1C89 /* Controller */,
-				2EB7BB5E246547B600DF1C89 /* Model */,
 				1FA43BD1224E569900F565CB /* CountOnMe */,
 				2E6BBF27245FF8A50021FAA7 /* CountOnMeTests */,
 				1FA43BD0224E569900F565CB /* Products */,
@@ -82,6 +79,9 @@
 		1FA43BD1224E569900F565CB /* CountOnMe */ = {
 			isa = PBXGroup;
 			children = (
+				2EB7BB602465485600DF1C89 /* View */,
+				2EB7BB5F2465482800DF1C89 /* Controller */,
+				2EB7BB5E246547B600DF1C89 /* Model */,
 				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
 				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
