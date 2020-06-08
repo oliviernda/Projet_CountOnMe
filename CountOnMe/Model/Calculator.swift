@@ -57,6 +57,14 @@ class Calculator {
     
     
     
+    
+    func tappedReset() {
+        calculString = ""
+    }
+    
+    
+    
+    
     func tappedAddition() {
         if canAddOperator {
             calculString.append(" + ")
@@ -77,6 +85,60 @@ class Calculator {
     }
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    func tappedDivision() {
+        if canAddOperator {
+            calculString.append(" / ")
+        } else {
+            calculatorHandlerDelegate?.displayAlert(message: "Un operateur est déja mis !")
+        }
+    }
+    
+    
+    
+    
+    func tappedMultiplication() {
+        if canAddOperator {
+            calculString.append(" * ")
+        } else {
+            calculatorHandlerDelegate?.displayAlert(message: "Un operateur est déja mis !")
+        }
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+//    Entree = ["2", "+", "2", "*", "2"]
+//    sortie = ["2", "+", "4"]
+    
+    func priority(expression: [String]) -> [String] {
+        var tempExpression: [String] = expression
+        
+        
+        
+        return tempExpression
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     func tappedEqual() {
         guard expressionIsCorrect else {
             calculatorHandlerDelegate?.displayAlert(message: "Entrez une expression correcte !")
@@ -91,7 +153,7 @@ class Calculator {
         }
         
         // Create local copy of operations
-        var operationsToReduce = elements
+        var operationsToReduce = priority(expression: elements)
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {

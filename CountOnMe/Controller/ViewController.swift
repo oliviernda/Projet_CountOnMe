@@ -12,6 +12,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
     let calculator = Calculator()
     
     override func viewDidLoad() {
@@ -27,6 +36,19 @@ class ViewController: UIViewController {
         
         calculator.tappedNumber(numberText: numberText)
     }
+    
+    
+    
+    
+
+    
+    @IBAction func tappedResetButton(_ sender: UIButton) {
+    
+   
+        calculator.tappedReset()
+}
+
+    
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         
@@ -45,6 +67,32 @@ class ViewController: UIViewController {
         
         calculator.tappedEqual()
     }
+    
+    
+    
+    
+    
+    
+    
+    @IBAction func tappedDivisonButton(_ sender: UIButton) {
+   
+        calculator.tappedDivision()
+        
+    }
+    
+   
+    
+    
+    
+    
+    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
+        
+        calculator.tappedMultiplication()
+    }
+    
+
+    
+    
     
 }
 
