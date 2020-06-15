@@ -124,11 +124,30 @@ class Calculator {
     
     func priority(expression: [String]) -> [String] {
         var tempExpression: [String] = expression
-        
-        
+        while tempExpression.contains("*") || tempExpression.contains("/") {
+            if let index = tempExpression.firstIndex(where: { $0 == "*" || $0 == "/"}) {
+                let mathOperator = tempExpression[index]
+                guard let leftNumber = Double(tempExpression[index-1]) else { return []}
+                guard let rigthNumber = Double(tempExpression[index+1]) else { return []}
+                let result : Double
+                if mathOperator == "*" {
+                    result = leftNumber*rigthNumber
+                } else {
+                    result = leftNumber/rigthNumber
+                }
+            
+                tempExpression[index-1] = String(result)
+                tempExpression.remove(at: index+1)
+                tempExpression.remove(at: index)
+            }
+            
+        }
+    
         
         return tempExpression
     }
+    
+    
     
     
     
@@ -157,14 +176,21 @@ class Calculator {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            guard let left = Int(operationsToReduce[0]) else { return }
+            guard let left = Double(operationsToReduce[0]) else { return }
             let operand = operationsToReduce[1]
-            guard let right = Int(operationsToReduce[2]) else { return }
+            guard let right = Double(operationsToReduce[2]) else { return }
             
-            let result: Int
+            let result: Double
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
+                
+                
+//            case "*": result = left * right
+//            case "/": result = left / right
+                
+                
+                
             default: return
             }
             
