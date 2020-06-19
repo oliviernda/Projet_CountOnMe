@@ -26,7 +26,12 @@ class Calculator {
     }
     
     var elements: [String] {
-        return calculString.split(separator: " ").map { "\($0)" }
+        var elements = calculString.split(separator: " ").map { "\($0)" }
+        if elements.first == "-" {
+            elements[1] = "-\(elements[1])"
+            elements.removeFirst()
+        }
+        return elements
     }
     
     // Error check computed variables
@@ -46,7 +51,9 @@ class Calculator {
         return calculString.firstIndex(of: "=") != nil
     }
     
-    
+    var expressionContainsDivisionByZero: Bool {
+        return calculString.contains("/ 0")
+    }
     
     func tappedNumber(numberText: String) {
         if expressionHaveResult {
@@ -63,50 +70,13 @@ class Calculator {
     }
     
     
-    
-    
-    func tappedAddition() {
-        if canAddOperator {
-            calculString.append(" + ")
-        } else {
-            calculatorHandlerDelegate?.displayAlert(message: "Un operateur est déja mis !")
+    func tappedOperator(mathOperator: String) {
+        if expressionHaveResult {
+            calculatorHandlerDelegate?.displayAlert(message: "Vous ne pouvez pas ajouter d'opérateur !")
+
         }
-    }
-    
-    
-    
-    func tappedSubstraction() {
-        if canAddOperator {
-            calculString.append(" - ")
-        } else {
-            calculatorHandlerDelegate?.displayAlert(message: "Un operateur est déja mis !")
-            
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    func tappedDivision() {
-        if canAddOperator {
-            calculString.append(" / ")
-        } else {
-            calculatorHandlerDelegate?.displayAlert(message: "Un operateur est déja mis !")
-        }
-    }
-    
-    
-    
-    
-    func tappedMultiplication() {
-        if canAddOperator {
-            calculString.append(" * ")
+        if (expressionIsCorrect && canAddOperator && !calculString.isEmpty) || (calculString.isEmpty && mathOperator == "-") {
+            calculString.append(" \(mathOperator) ")
         } else {
             calculatorHandlerDelegate?.displayAlert(message: "Un operateur est déja mis !")
         }
@@ -151,7 +121,13 @@ class Calculator {
     
     
     
-    
+    func formatResult(result: Double) -> String {
+        let formatter = NumberFormatter()
+        formatter.maximumFractionDigits = 3
+        formatter.minimumFractionDigits = 0
+        guard let resultFormated = formatter.string(from: NSNumber(value: result)) else { return ""}
+        return resultFormated
+    }
     
     
     
@@ -171,6 +147,12 @@ class Calculator {
             return
         }
         
+        guard !expressionContainsDivisionByZero else {
+            calculatorHandlerDelegate?.displayAlert(message: "Il est impossible de diviser par zéro !")
+
+            return
+        }
+        
         // Create local copy of operations
         var operationsToReduce = priority(expression: elements)
         
@@ -186,10 +168,7 @@ class Calculator {
             case "-": result = left - right
                 
                 
-//            case "*": result = left * right
-//            case "/": result = left / right
-                
-                
+ 
                 
             default: return
             }
@@ -199,7 +178,9 @@ class Calculator {
         }
         
         guard let result = operationsToReduce.first else { return }
-        calculString.append(" = \(result)")
+        guard let resultDoubled = Double(result) else { return }
+        let resultFormated = formatResult(result: resultDoubled)
+        calculString.append(" = \(resultFormated)")
         
     }
     
