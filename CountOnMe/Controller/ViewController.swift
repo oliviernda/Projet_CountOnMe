@@ -40,106 +40,40 @@ class ViewController: UIViewController {
     
     
     
-
+    
     
     @IBAction func tappedResetButton(_ sender: UIButton) {
-    
-   
+        
+        
         calculator.tappedReset()
-}
-
+    }
     
     
-    @IBAction func tappedAdditionButton(_ sender: UIButton) {
+    
+    @IBAction func tappedOperatorButtons(_ sender: UIButton) {
         guard let mathOperator = sender.title(for: .normal) else { return }
         switch mathOperator {
         case "+":
             calculator.tappedOperator(mathOperator: "+")
-            case "-":
+        case "-":
             calculator.tappedOperator(mathOperator: "-")
-            case "✕":
+        case "✕":
             calculator.tappedOperator(mathOperator: "*")
-            case "÷":
+        case "÷":
             calculator.tappedOperator(mathOperator: "/")
         default:
             break
         }
         
-     
+        
     }
     
-    @IBAction func tappedSubstractionButton(_ sender: UIButton) {
-        
-        
-        guard let mathOperator = sender.title(for: .normal) else { return }
-        switch mathOperator {
-        case "+":
-            calculator.tappedOperator(mathOperator: "+")
-            case "-":
-            calculator.tappedOperator(mathOperator: "-")
-            case "✕":
-            calculator.tappedOperator(mathOperator: "*")
-            case "÷":
-            calculator.tappedOperator(mathOperator: "/")
-        default:
-            break
-        }
-    }
     
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         
         
         calculator.tappedEqual()
     }
-    
-    
-    
-    
-    
-    
-    
-    @IBAction func tappedDivisonButton(_ sender: UIButton) {
-   
-        guard let mathOperator = sender.title(for: .normal) else { return }
-        switch mathOperator {
-        case "+":
-            calculator.tappedOperator(mathOperator: "+")
-            case "-":
-            calculator.tappedOperator(mathOperator: "-")
-            case "✕":
-            calculator.tappedOperator(mathOperator: "*")
-            case "÷":
-            calculator.tappedOperator(mathOperator: "/")
-        default:
-            break
-        }
-        
-    }
-    
-   
-    
-    
-    
-    
-    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
-        
-        guard let mathOperator = sender.title(for: .normal) else { return }
-        switch mathOperator {
-        case "+":
-            calculator.tappedOperator(mathOperator: "+")
-            case "-":
-            calculator.tappedOperator(mathOperator: "-")
-            case "✕":
-            calculator.tappedOperator(mathOperator: "*")
-            case "÷":
-            calculator.tappedOperator(mathOperator: "/")
-        default:
-            break
-        }
-    }
-    
-
-    
     
     
 }

@@ -86,11 +86,7 @@ class Calculator {
     
     
     
-    
-    
-    
-//    Entree = ["2", "+", "2", "*", "2"]
-//    sortie = ["2", "+", "4"]
+
     
     func priority(expression: [String]) -> [String] {
         var tempExpression: [String] = expression
