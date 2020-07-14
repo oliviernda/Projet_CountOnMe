@@ -8,49 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-    @IBOutlet weak var textView: UITextView!
-    @IBOutlet var numberButtons: [UIButton]!
+final class ViewController: UIViewController {
     
+    // MARK: - OUTLETS
     
+    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private var numberButtons: [UIButton]!
     
+    // MARK: - PROPERTIES
     
+    private let calculator = Calculator()
     
-    
-    
-    
-    
-    
-    let calculator = Calculator()
+    // MARK: - VIEW LIFE CYCLE
     
     override func viewDidLoad() {
         super.viewDidLoad()
         calculator.calculatorHandlerDelegate = self 
     }
     
+    // MARK: - ACTIONS
+    
     // View actions
-    @IBAction func tappedNumberButton(_ sender: UIButton) {
+    @IBAction private func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
         }
-        
         calculator.tappedNumber(numberText: numberText)
     }
     
-    
-    
-    
-    
-    
-    @IBAction func tappedResetButton(_ sender: UIButton) {
-        
-        
+    @IBAction private func tappedResetButton(_ sender: UIButton) {
         calculator.tappedReset()
     }
     
-    
-    
-    @IBAction func tappedOperatorButtons(_ sender: UIButton) {
+    @IBAction private func tappedOperatorButtons(_ sender: UIButton) {
         guard let mathOperator = sender.title(for: .normal) else { return }
         switch mathOperator {
         case "+":
@@ -64,19 +54,14 @@ class ViewController: UIViewController {
         default:
             break
         }
-        
-        
     }
     
-    
-    @IBAction func tappedEqualButton(_ sender: UIButton) {
-        
-        
+    @IBAction private func tappedEqualButton(_ sender: UIButton) {
         calculator.tappedEqual()
     }
-    
-    
 }
+
+// MARK: - EXTENSION
 
 extension ViewController: CalculatorHandler {
     func displayAlert(message: String) {
@@ -88,7 +73,5 @@ extension ViewController: CalculatorHandler {
     func displayScreen(calculText: String) {
         textView.text = calculText
     }
-    
-    
 }
 

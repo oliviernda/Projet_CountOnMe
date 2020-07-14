@@ -29,7 +29,7 @@ class CountOnMeTests: XCTestCase {
     
     
     
-    func testGivenSubstractionMethod_WhenAnOperatorIsAlreadyTapped_ThenShouldNotAddSubstractionToCalculString() {
+    func testGivenTapeSubstractionAfterAdditionTappedMethod_WhenAnOperatorIsAlreadyTapped_ThenShouldNotAddSubstractionToCalculString() {
         calculator.tappedNumber(numberText: "4")
         calculator.tappedOperator(mathOperator: "+")
         calculator.tappedOperator(mathOperator: "-")
@@ -37,7 +37,7 @@ class CountOnMeTests: XCTestCase {
     
     }
     
-    func testGivenAdditionMethod_WhenAnOperatorIsAlreadyTapped_ThenShouldNotAddSubstractionToCalculString() {
+    func testGivenTapeAdditionTwoTimes_WhenAnOperatorIsAlreadyTapped_ThenShouldNotAddAdditionToCalculString() {
            calculator.tappedNumber(numberText: "4")
            calculator.tappedOperator(mathOperator: "+")
            calculator.tappedOperator(mathOperator: "+")
@@ -53,7 +53,8 @@ class CountOnMeTests: XCTestCase {
         XCTAssertEqual(calculator.calculString, "5 - 2 = 3")
     }
     
-    func testGivenTappedNumberMethod_WhenExpressionHaveresult_ThenShouldReturnCorrectresult() {
+    
+    func testGivenTappedNumberAfterEqualMethod_WhenWrongButtonIsPressed_ThenShouldDisplayAlert() {
         calculator.tappedNumber(numberText: "1")
         calculator.tappedOperator(mathOperator: "+")
         calculator.tappedNumber(numberText: "1")
@@ -64,7 +65,7 @@ class CountOnMeTests: XCTestCase {
     }
     
     
-    func testGivenTappedEqualMethod_WhenWrongOparationIspassed_ThenShouldNotCalculate(){
+    func testGivenTappedEqualAfterAnOperatorMethod_WhenPresseEqualAfterAnOperator_ThenShouldNotCalculate(){
         calculator.tappedNumber(numberText: "1")
         calculator.tappedOperator(mathOperator: "-")
         calculator.tappedEqual()
@@ -72,7 +73,8 @@ class CountOnMeTests: XCTestCase {
 
     }
     
-    func testGiventappedEqualMethod_WhenNoneOperatorIstapped_ThenShouldNotcalculate(){
+    
+    func testGivenNoneOperatorTappedBeforeEqualTappedMethod_WhenNoneOperatorIstapped_ThenShouldNotcalculate(){
         calculator.tappedNumber(numberText: "2")
         calculator.tappedEqual()
         XCTAssertEqual(calculator.calculString, "2")
@@ -80,11 +82,7 @@ class CountOnMeTests: XCTestCase {
     
     
     
-    
-    
-    
-    
-    func testGivenTappedDot_WhenExpressionHaveresult_ThenShouldReturnCorrectresult() {
+    func testGivenCalculationBeginBySubstraction_WhenSubstrationPressedBeforeAnOperator_ThenShouldReturnCorrectresult() {
            calculator.tappedOperator(mathOperator: "-")
            calculator.tappedNumber(numberText: "1")
            calculator.tappedOperator(mathOperator: "+")
@@ -93,6 +91,7 @@ class CountOnMeTests: XCTestCase {
            XCTAssertEqual(calculator.calculString, " - 1 + 2 = 1")
     
 }
+    
 
     func testGivenTappedResetMethod_WhenPressedResetButton_ThenShouldResetCalculString(){
       calculator.tappedReset()
@@ -100,7 +99,8 @@ class CountOnMeTests: XCTestCase {
   }
 
     
-    func testGivenAddOperatorMethod_WhenExpressionHaveresult_ThenShouldNotAddOperator() {
+    
+    func testGivenTappedAnOperatorAfterResult_WhenExpressionHaveResult_ThenShouldNotAddOperator() {
            calculator.tappedNumber(numberText: "2")
            calculator.tappedOperator(mathOperator: "-")
            calculator.tappedNumber(numberText: "1")
@@ -112,7 +112,7 @@ class CountOnMeTests: XCTestCase {
     
     
     
-    func testGivenMultiplicationPriotityCalculMethod_WhenExpressionHaveresult_ThenShould() {
+    func testGivenMultiplicationPriotityCalculMethod_WhenCalculationContainsMultiplicationOperator_ThenShouldDoMultiplicationOperationFirst() {
               calculator.tappedNumber(numberText: "5")
               calculator.tappedOperator(mathOperator: "+")
               calculator.tappedNumber(numberText: "2")
@@ -124,7 +124,7 @@ class CountOnMeTests: XCTestCase {
           }
     
     
-    func testGivenDivisionPriotityCalculMethod_WhenExpressionHaveresult_ThenShould() {
+    func testGivenDivisionPriotityCalculMethod_WhenCalculationContainsDivisionOperator_ThenShouldDoDivisionOperationFirst() {
                  calculator.tappedNumber(numberText: "6")
                  calculator.tappedOperator(mathOperator: "-")
                  calculator.tappedNumber(numberText: "9")
